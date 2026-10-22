@@ -1,0 +1,9 @@
+{
+  "name": "carnet-paldea",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Carnet Nuzlocke français pour Pokémon Écarlate, entièrement local.",
+  "scripts": { "dev": "node server.mjs", "build": "node build.mjs", "test": "node --test core.test.mjs" },
+  "engines": { "node": ">=20" }
+}
