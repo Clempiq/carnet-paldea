@@ -15,6 +15,15 @@ L’itinéraire ordonne les 18 badges par niveau maximum adverse. Le plafond de 
 
 ## Catalogue
 
+## Histoire et rencontres par zone — mise à jour du 23 octobre 2026
+
+- [Pokébip — Chasse au Trésor](https://www.pokebip.com/page/jeux-video/pokemon-ecarlate-violet/chasse-au-tresor) : les trois voies indépendantes. Les textes courts de l’application sont rédigés pour le carnet.
+- [SuperSoluce — Prologue](https://www.supersoluce.com/soluce/pokemon-ecarlate-violet/prologue-decouverte-de-l-academie) : enchaînement du début de l’histoire et index du cheminement.
+- [Pokébip — Koraidon](https://www.pokebip.com/page/jeux-video/pokemon-ecarlate-violet/formes-koraidon-miraidon) : Sprint, Nage, Grand saut, Planage et Escalade après les cinq Dominants correspondants.
+- `habitats.json` contient les faits d’apparition des 49 fiches du [Guide des lieux Pokébip](https://www.pokebip.com/page/jeux-video/pokemon-ecarlate-violet/guide-des-lieux/accueil). Chaque lieu porte son URL source, aussi accessible depuis l’interface. Tables de biomes et listes d’apparitions fixes ; lignes exclusives Violet exclues. Les formes de Paldea et Plumeline sont associées à leurs types propres ; les variantes visuelles de mêmes types sont regroupées. Hors raids, événements, cadeaux et rencontres légendaires spéciales. Une liste vide signifie qu’aucune rencontre sauvage n’est répertoriée dans ces sections, pas qu’aucun Pokémon ne peut jamais être obtenu à cet endroit. Les niveaux indiqués sont ceux de la première section sauvage du lieu ; les sous-zones et apparitions fixes peuvent différer.
+
+## Données du catalogue national
+
 `pokemon.json` provient des CSV publics de [PokéAPI](https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv) : `pokemon_species_names.csv` (langue 5), `pokemon.csv`, `pokemon_types.csv`, `pokemon_species.csv`. 1 025 espèces nationales et 9 formes alternatives utiles à Paldea, dont les trois Tauros et Axoloto de Paldea. Le catalogue ne garantit pas la disponibilité d’une espèce dans Écarlate. Les types restent éditables pour d’autres formes.
 
 Illustrations chargées depuis le dépôt public [PokeAPI/sprites](https://github.com/PokeAPI/sprites), avec repli sur les sprites et un symbole si le réseau est indisponible. Pokémon et les illustrations appartiennent à leurs ayants droit. Ce projet de fan n’est pas affilié à Nintendo, Creatures, GAME FREAK ou The Pokémon Company.

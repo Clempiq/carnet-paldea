@@ -6,8 +6,8 @@ Application française de suivi Nuzlocke pour Pokémon Écarlate. Créée de zé
 
 - **Carnet** : équipe, captures, cimetière, 18 badges, prochain objectif et plafond.
 - **Rencontres** : recherche en français, illustration et types automatiques, évolution par changement d’espèce, surnom, zone, niveau, statut, chromatique et notes. Équipe limitée à six.
-- **Parcours** : huit arènes, cinq Dominants, cinq bases Team Star et finales repliées. Niveaux réels des adversaires, sources dans `SOURCES.md`.
-- **Zones** : lieux de Paldea, occupation automatique et ajouts personnalisés.
+- **Parcours** : prologue à cocher, itinéraire narratif des 18 badges, liens vers les zones, capacités de Koraidon et derniers chapitres repliés. Niveaux réels des adversaires, sources dans `SOURCES.md`.
+- **Zones** : fiches cliquables des 49 lieux de Paldea, Pokémon d’Écarlate avec sprites, types, biomes et moments, recherche locale et ajout prérempli. Bouton « Je suis ici ». Les zones utilisées sont grisées, les nouvelles captures bloquées selon les règles (exception chromatique conservée). Les morts et rencontres manquées consomment aussi la zone. Ajout de lieux personnalisés.
 - **Réglages** : six règles, plafond automatique ou manuel, export/import JSON validé avant remplacement, copie de secours et annulation du dernier import.
 
 Les données restent dans le stockage local du navigateur. **Aucune synchronisation entre appareils.** Exportez régulièrement, notamment avant de changer de navigateur, d’adresse du site ou d’appareil. Les onglets d’une même origine se mettent à jour par les événements de stockage. La navigation privée et l’effacement des données du navigateur peuvent supprimer le carnet.
@@ -25,7 +25,7 @@ npm test
 npm run build
 ```
 
-`dist/` contient les huit fichiers publics. Aucune variable d’environnement ni secret requis. Les tests utilisent uniquement le module de tests natif de Node.js.
+`dist/` contient les dix fichiers publics. Aucune variable d’environnement ni secret requis. Les tests utilisent uniquement le module de tests natif de Node.js. Les sauvegardes version 1 restent compatibles : les champs `storyCompleted` et `currentZone` sont facultatifs à l’import.
 
 ## Vercel : réglages exacts
 

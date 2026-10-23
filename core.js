@@ -1,7 +1,8 @@
 import { BOSSES, FINALS, ZONES, TYPES, STATUS, RULES } from './data.js';
+import { STORY_IDS } from './story.js';
 export const STORAGE_KEY = 'carnet-paldea:v1';
 export const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,'');
-export function freshState() { return {version:1,encounters:[],customZones:[],completed:[],cap:null,rules:Object.fromEntries(RULES.map(([key])=>[key,true])),updatedAt:null}; }
+export function freshState() { return {version:1,encounters:[],customZones:[],completed:[],storyCompleted:[],currentZone:null,cap:null,rules:Object.fromEntries(RULES.map(([key])=>[key,true])),updatedAt:null}; }
 export const allZones = state => [...ZONES,...state.customZones];
 export const nextBoss = state => [...BOSSES,...FINALS].find(b=>!state.completed.includes(b.id));
 export function automaticCap(state) {
@@ -11,6 +12,8 @@ export function automaticCap(state) {
 }
 export const levelCap = state => state.cap ?? automaticCap(state);
 export const usesZone = (e,rules) => !(e.shiny && rules.shiny);
+export const zoneUsed = (state,zone,exceptId) => state.encounters.some(e=>e.id!==exceptId && e.zone===zone && usesZone(e,state.rules));
+export const zoneLocked = (state,zone,shiny=false,previous) => state.rules.onePerZone && !(shiny&&state.rules.shiny) && !(previous?.zone===zone&&usesZone(previous,state.rules)) && zoneUsed(state,zone,previous?.id);
 export function encounterErrors(state, e, previous) {
   const errors=[];
   if (!Object.hasOwn(STATUS,e.status)) errors.push('Choisissez un statut valide.');
@@ -45,6 +48,14 @@ export function validateImport(raw,catalog) {
   const knownBosses=[...BOSSES,...FINALS].map(b=>b.id);
   if(!Array.isArray(raw.completed)||raw.completed.some(id=>!knownBosses.includes(id))||new Set(raw.completed).size!==raw.completed.length) fail('Progression invalide.');
   s.completed=[...raw.completed];
+  if(raw.storyCompleted!==undefined){
+    if(!Array.isArray(raw.storyCompleted)||raw.storyCompleted.some(id=>!STORY_IDS.includes(id))||new Set(raw.storyCompleted).size!==raw.storyCompleted.length)fail('Progression de l’histoire invalide.');
+    s.storyCompleted=[...raw.storyCompleted];
+  }
+  if(raw.currentZone!==undefined && raw.currentZone!==null){
+    if(!allZones(s).includes(raw.currentZone))fail('Zone actuelle inconnue.');
+    s.currentZone=raw.currentZone;
+  }
   const ids=new Set(), knownSpecies=new Set(catalog.map(p=>p.id));
   s.encounters=raw.encounters.map(e=>{
     if(!e || typeof e!=='object') fail('Rencontre invalide.');
