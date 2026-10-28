@@ -1,8 +1,20 @@
 # Carnet Paldea
 
-Application française de suivi Nuzlocke pour Pokémon Écarlate. Créée de zéro : HTML, CSS et JavaScript natifs, sans dépendance applicative, sans backend ni compte utilisateur.
+> Un carnet de bord en français pour suivre un Nuzlocke de Pokémon Écarlate, pensé pour être utilisé sur téléphone pendant qu'on joue.
 
-## Utilisation
+**Démo :** [carnet-paldea.vercel.app](https://carnet-paldea.vercel.app)
+
+## Le problème
+
+Le Nuzlocke est un défi où l'on ne capture qu'un Pokémon par zone et où un Pokémon K.O. est perdu pour de bon. Suivre ces règles à la main (zones déjà utilisées, cimetière, plafond de niveau avant chaque arène) est fastidieux, et les outils existants sont en anglais ou pensés pour d'autres jeux.
+
+**Pour qui :** les joueurs francophones qui tentent un Nuzlocke sur Écarlate et veulent un suivi fiable, sans compte ni installation.
+
+Application créée de zéro : HTML, CSS et JavaScript natifs, sans dépendance applicative, sans backend ni compte utilisateur.
+
+## Fonctionnalités
+
+
 
 - **Carnet** : équipe, captures, cimetière, 18 badges, prochain objectif et plafond.
 - **Rencontres** : recherche en français, illustration et types automatiques, évolution par changement d’espèce, surnom, zone, niveau, statut, chromatique et notes. Équipe limitée à six.
@@ -54,6 +66,26 @@ Alternative en CLI une fois authentifié : `npx vercel`, sélectionner **Create 
 6. Tester une septième entrée d’équipe, une zone utilisée, une exception chromatique et un JSON invalide.
 7. Vérifier le formulaire et la navigation sur un écran de téléphone.
 
+## Stack
+
+| Catégorie | Technologie |
+|---|---|
+| Front | HTML, CSS et JavaScript natifs (modules ES), sans framework |
+| Données | Catalogue Pokémon et zones en JSON local, sauvegarde dans le `localStorage` |
+| Tests | Module de tests natif de Node.js |
+| Déploiement | Vercel (site statique) |
+
 ## Architecture
 
 `app.js` : vues et interactions, `core.js` : validation et règles, `data.js` : itinéraire et zones, `pokemon.json` : catalogue, `styles.css` : interface. `server.mjs` sert uniquement à la prévisualisation locale, il n’est pas déployé. `core.test.mjs` couvre les invariants et les imports. Toutes les chaînes importées ou saisies sont échappées avant insertion dans le HTML.
+
+## Statut
+
+✅ **Fonctionnel et déployé.** Couvre toute l'aventure principale d'Écarlate (18 badges, 49 zones).
+
+## Ce que j'ai appris
+
+- **Traduire des règles de jeu en règles métier** testables (zone consommée, mort définitive, plafond de niveau, exception chromatique), isolées dans `core.js`.
+- **Protéger les données de l'utilisateur** sans backend : import validé avant remplacement, copie de secours, annulation du dernier import.
+- **Faire simple** : aucune dépendance, aucun compte, aucune variable d'environnement, ce qui rend le projet facile à maintenir et gratuit à héberger.
+- **Concevoir pour l'usage réel** : un écran de téléphone posé à côté de la console, avec un bouton « Je suis ici » et des ajouts préremplis.
